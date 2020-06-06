@@ -223,7 +223,7 @@ class DeployManager:
 
     @staticmethod
     def _get_nodes():
-        return ["saltstack-01", "saltstack-02", "saltstack-03"]
+        return ["saltstack-02"]
 
 
 if __name__ == "__main__":
