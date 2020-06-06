@@ -12,9 +12,9 @@ INSTANCE_NAME = os.getenv("DCS_INSTANCE_NAME")
 CLUSTER_ENV = os.getenv("DCS_CLUSTER_ENV")
 SERVICES = json.loads(os.getenv("DCS_MICRO_SERVICES") or "[]")
 
-TARGET_HOME = os.getenv("TARGET_HOME", "/root")
+TARGET_HOME = os.getenv("TARGET_HOME", "/opt")
 TMP_HOME = os.getenv("TMP_HOME", "/tmp")
-ENTRYPOINT_URL = 'http://192.168.150.72/file/demo/spring-boot-sample/salt-entrypoint.sh'
+ENTRYPOINT_URL = 'http://192.168.101.12/file/daocloud/spring-boot-demo-vm-script/salt-entrypoint.sh'
 
 assert SALT_URL, "Need SaltStack master api url"
 assert SALT_USER, "Need SaltStack username"
