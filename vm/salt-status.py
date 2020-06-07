@@ -149,6 +149,7 @@ def sync_instance(service, node_pros: dict):
                 "status": "stopped",
             })
     #print(service_instance)
+    
     service['service_instance'] = service_instance
 
 
