@@ -187,6 +187,7 @@ class DeployManager:
                     package_name=s.package_name)
                 updrade_shell_cmd = "{work_dir}/salt-entrypoint.sh --method upgrade --name {app_name}.jar --app-url {app_url} --token {token} --work-dir {work_dir} --app-path {work_dir}" \
                     .format(work_dir=package_target_path, app_name=s.package_name, app_url=s.path, token=s.token)
+                print(updrade_shell_cmd)
                 self.salt_client.cmd_task(n, updrade_shell_cmd)
 
     def restart(self):
