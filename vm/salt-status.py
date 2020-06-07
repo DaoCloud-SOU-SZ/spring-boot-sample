@@ -148,7 +148,7 @@ def sync_instance(service, node_pros: dict):
                 "release_name": service['release_name'],
                 "status": "stopped",
             })
-    print(service_instance)
+    #print(service_instance)
     service['service_instance'] = service_instance
 
 
