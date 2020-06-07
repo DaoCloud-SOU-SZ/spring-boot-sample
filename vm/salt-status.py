@@ -137,7 +137,7 @@ def sync_instance(service, node_pros: dict):
                 "service_instance_id": "{}-{}".format(node_name, package),
                 "service_instance_name": node_name,
                 "package_name": service['package_name'],
-                "release_name": 'spring-boot-demo-0.0.1-SNAPSHOT.jar',
+                "release_name": service['release_name'],
                 "status": "running",
             })
         if not has:
