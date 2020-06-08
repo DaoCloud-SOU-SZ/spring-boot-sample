@@ -223,6 +223,7 @@ class DeployManager:
             ))
         return result
 
+
     @staticmethod
     def _get_nodes():
         # deploy node name
