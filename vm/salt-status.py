@@ -9,7 +9,7 @@ SALT_URL = os.getenv("DCS_CLUSTER_URL")
 SALT_USER = os.getenv("DCS_CLUSTER_USERNAME")
 SALT_PWD = os.getenv("DCS_CLUSTER_PASSWORD")
 SERVICES = json.loads(os.getenv("DCS_MICRO_SERVICES") or "[]")
-NODE_TARGET = "saltstack-02,saltstack-03"
+NODE_TARGET = "*"
 
 DEFAULT_HEADERS = {
     'User-Agent': "SaltClient/DCS",
