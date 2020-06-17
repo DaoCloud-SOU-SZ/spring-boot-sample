@@ -24,6 +24,13 @@ spec:
   containers:
   - name: docker
     image: 192.168.101.9/kube-system/docker:19.03.8
+    resources:
+      limits:
+        cpu: '4'
+        memory: 4Gi
+      requests:
+        cpu: 100m
+        memory: 128Mi
     command:
     - 'cat'
     tty: true
@@ -37,6 +44,13 @@ spec:
       privileged: true
   - name: maven
     image: 192.168.101.9/daocloud/maven:master-1805018
+    resources:
+      limits:
+        cpu: '4'
+        memory: 4Gi
+      requests:
+        cpu: 100m
+        memory: 128Mi
     command:
     - cat
     tty: true
