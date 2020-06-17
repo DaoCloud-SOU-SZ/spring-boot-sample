@@ -2,7 +2,6 @@ pipeline {
     agent {
         kubernetes {
             label 'spring-boot-sample-jobs'
-            defaultContainer 'jnlp'
             yamlFile 'k8s/pipeline-job.yaml'
         }
     }
