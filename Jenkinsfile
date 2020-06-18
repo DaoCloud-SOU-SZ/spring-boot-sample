@@ -2,74 +2,7 @@ pipeline {
     agent {
         kubernetes {
             label 'spring-boot-sample-jobs'
-            yaml '''
-apiVersion: v1
-kind: Pod
-metadata:
-  labels:
-    jnlp-slave: 'true'
-spec:
-  securityContext:
-    unAsUser: 0
-  nodeSelector:
-    jenkins.io/builder: 'true'
-  volumes:
-  - name: docker
-    hostPath:
-      path: /var/run/docker.sock
-      type: ''
-  - name: localtime
-    hostPath:
-      path: /etc/localtime
-      type: ''
-  - name: repository
-    hostPath:
-      path: /root/.m2/repository
-      type: ''
-  containers:
-  - name: docker
-    image: 192.168.101.9/kube-system/docker:19.03.8
-    resources:
-      limits:
-        cpu: '4'
-        memory: 4Gi
-      requests:
-        cpu: 100m
-        memory: 128Mi
-    command:
-    - 'cat'
-    tty: true
-    volumeMounts:
-    - name: localtime
-      mountPath: /etc/localtime
-      readOnly: true
-    - name: docker
-      mountPath: /var/run/docker.sock
-    securityContext:
-      privileged: true
-  - name: maven
-    image: 192.168.101.9/daocloud/maven:master-1805018
-    resources:
-      limits:
-        cpu: '4'
-        memory: 4Gi
-      requests:
-        cpu: 100m
-        memory: 128Mi
-    command:
-    - cat
-    tty: true
-    volumeMounts:
-    - name: localtime
-      mountPath: /etc/localtime
-      readOnly: true
-    - name: docker
-      mountPath: /var/run/docker.sock
-    - name: repository
-      mountPath: /root/.m2/repository
-    securityContext:
-      privileged: true
-'''            
+            yamlFile ''             
 
         }
     }
