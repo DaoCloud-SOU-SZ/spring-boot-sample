@@ -9,7 +9,7 @@ pipeline {
     environment {
         DCE = credentials('dce-registry')
         REGISTRY_URL = 'https://192.168.101.9'
-        DOCKER_IMAGE = '192.168.101.9/daocloud/spring-boot-sample-jenkins'
+        DOCKER_IMAGE = '192.168.101.9/daocloud/spring-boot-demo-jenkins'
         SOURCE_URL   = 'http://192.168.50.6/demo/spring-boot-sample.git'
     }
     stages{
