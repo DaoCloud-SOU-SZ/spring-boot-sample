@@ -26,7 +26,7 @@ pipeline {
         stage('maven compile') {
             steps {
                 container('maven') {
-                    bash "mvn -B clean package -Dmaven.test.skip=true"
+                    sh "mvn -B clean package -Dmaven.test.skip=true"
                 }
                 script {
                     IMAGE_TAG = sh(returnStdout: true, script: 'git rev-parse --short HEAD').trim()
