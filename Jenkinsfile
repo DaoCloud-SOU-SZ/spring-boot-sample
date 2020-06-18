@@ -2,7 +2,7 @@ pipeline {
     agent {
         kubernetes {
             label 'spring-boot-sample-jobs'
-            yamlFile 'k8s/pipeline-job.yaml'
+            yamlFile 'pipeline-job.yaml'
         }
     }
     environment {
