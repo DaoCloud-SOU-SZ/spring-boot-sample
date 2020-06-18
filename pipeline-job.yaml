@@ -31,9 +31,9 @@ spec:
       requests:
         cpu: 100m
         memory: 128Mi
-    command:
-    - 'cat'
-    tty: true
+    env:
+    - name: JENKINS_URL
+      value: 'http://172.31.8.194:8080'
   - name: docker
     image: 192.168.101.9/kube-system/docker:19.03.8
     resources:
