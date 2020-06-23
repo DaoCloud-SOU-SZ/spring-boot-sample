@@ -129,9 +129,9 @@
 					<artifactId>maven-surefire-plugin</artifactId>
 					<version>2.22.2</version>
 					<configuration>
-						<argLine>${jacoco.agent.argLine}</argLine>
+						<!-- <argLine>${jacoco.agent.argLine}</argLine>
 						<forkCount>0</forkCount>
-						<testFailureIgnore>true</testFailureIgnore>
+						<testFailureIgnore>true</testFailureIgnore> -->
 					</configuration>
 				</plugin>
 			</plugins>
