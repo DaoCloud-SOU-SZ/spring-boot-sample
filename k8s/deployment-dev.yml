@@ -15,6 +15,16 @@ spec:
       labels:
         app: {{ instance_name }}-demo
     spec:
+      affinity:
+        podAntiAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            - labelSelector:
+                matchExpressions:
+                  - key: app
+                    operator: In
+                    values:
+                      - {{ instance_name }}-demo
+              topologyKey: kubernetes.io/hostname
       containers:
       - name: {{ instance_name }}-demo
         image: {{ spring-boot-demo-docker.image }}
