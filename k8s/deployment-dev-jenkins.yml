@@ -1,0 +1,72 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: INSTANCE_NAME-demo
+  labels:
+    dce.daocloud.io/app: INSTANCE_NAME-demo
+    dce.daocloud.io/component: INSTANCE_NAME-demo
+    app: INSTANCE_NAME-demo
+
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      dce.daocloud.io/app: INSTANCE_NAME-demo
+      dce.daocloud.io/component: INSTANCE_NAME-demo
+      app: INSTANCE_NAME-demo
+  template:
+    metadata:
+      name: INSTANCE_NAME-demo
+      labels:
+        dce.daocloud.io/app: INSTANCE_NAME-demo
+        dce.daocloud.io/component: INSTANCE_NAME-demo
+        app: INSTANCE_NAME-demo
+      annotations:
+        dce.daocloud.io/parcel.net.type: ovs
+        dce.daocloud.io/parcel.net.value: 'rule:lan1003-default:rule2'
+    spec:
+      affinity:
+        podAntiAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            - labelSelector:
+                matchExpressions:
+                  - key: app
+                    operator: In
+                    values:
+                      - INSTANCE_NAME-demo
+              topologyKey: kubernetes.io/hostname
+      containers:
+      - name: INSTANCE_NAME-demo
+        image: INSTANCE_IMAGE
+        ports:
+        - name: http
+          containerPort: 8080
+          protocol: TCP
+        - name: prometheus
+          containerPort: 9090
+          protocol: TCP
+        resources:
+          limits:
+            cpu: "2" # cpu 限制
+            memory: "2048Mi" # 内存限制
+          requests:
+            cpu: "2" # cpu 预留（与限制值一致）
+            memory: "2048Mi" # 内存预留（与限制值一致）
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: INSTANCE_NAME-demo
+spec:
+  type: NodePort
+  ports:
+  - name: http
+    protocol: TCP
+    port: 8080
+    targetPort: 8080
+  - name: prometheus
+    protocol: TCP
+    port: 9090
+    targetPort: 9090
+  selector:
+    app: INSTANCE_NAME-demo

@@ -76,3 +76,21 @@ spec:
       mountPath: /root/.m2/repository
     securityContext:
       privileged: true
+  - name: kubectl
+    image: 192.168.101.9/kube-system/kubectl:1.18.0
+    resources:
+      limits:
+        cpu: '4'
+        memory: 4Gi
+      requests:
+        cpu: 100m
+        memory: 128Mi
+    command:
+    - cat
+    tty: true
+    volumeMounts:
+    - name: localtime
+      mountPath: /etc/localtime
+      readOnly: true
+    securityContext:
+      privileged: true
