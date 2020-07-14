@@ -57,6 +57,10 @@ apiVersion: v1
 kind: Service
 metadata:
   name: INSTANCE_NAME-demo
+  labels:
+    dce.daocloud.io/app: INSTANCE_NAME-demo
+    dce.daocloud.io/component: INSTANCE_NAME-demo
+    app: INSTANCE_NAME-demo
 spec:
   type: NodePort
   ports:
@@ -69,4 +73,6 @@ spec:
     port: 9090
     targetPort: 9090
   selector:
+    dce.daocloud.io/app: INSTANCE_NAME-demo
+    dce.daocloud.io/component: INSTANCE_NAME-demo
     app: INSTANCE_NAME-demo
