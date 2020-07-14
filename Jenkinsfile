@@ -39,7 +39,7 @@ pipeline {
             steps {
                 container('kubectl'){
                     sh "sed -i 's/INSTANCE_NAME/spring-boot/g' k8s/deployment-dev-jenkins.yml"                    
-                    sh "sed -i 's?INSTANCE_NAME?${DOCKER_IMAGE}:${IMAGE_TAG}?g' k8s/deployment-dev-jenkins.yml"
+                    sh "sed -i 's?INSTANCE_IMAGE?${DOCKER_IMAGE}:${IMAGE_TAG}?g' k8s/deployment-dev-jenkins.yml"
                     sh "curl -sk -u ytfkxt67:4xxqsmgpmsnfnmvsjtht46see4tvh4mi63snqiwq http://192.168.101.10/dce/update-service.py?ClusterId=91822e42-89c9-a7f3-ce94-271abd966915 | python2 -u - -s spring-boot-demo-jenkins-1 -i ${DOCKER_IMAGE}:${IMAGE_TAG} -t default -c spring-boot-demo-jenkins-1"
                     sh "kubectl -n default apply -f k8s/deployment-dev-jenkins.yml"
                 }
