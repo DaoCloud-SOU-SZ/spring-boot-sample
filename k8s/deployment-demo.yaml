@@ -13,7 +13,7 @@ spec:
       name: {{ instance_name }}-spring-boot
       labels:
         app: {{ instance_name }}-spring-boot
-      annotation:
+      annotations:
         dce.daocloud.io/metrics-enabled: 'true'
         dce.daocloud.io/metrics-path: /actuator/prometheus
         dce.daocloud.io/metrics-port: '9090'
