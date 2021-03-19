@@ -28,25 +28,25 @@ spec:
           defaultMode: 420
       initContainers:
       - name: dx-monitor-agent-sidecar
-      image: '192.168.150.181/dmp-system/dx-monitor-agent-sidecar:2.4.0'
-      command:
-        - cp
-        - '-r'
-        - /sidecar
-        - /target
-      resources:
-        limits:
-          cpu: 128m
-          memory: '64Mi'
+        image: '192.168.150.181/dmp-system/dx-monitor-agent-sidecar:2.4.0'
+        command:
+          - cp
+          - '-r'
+          - /sidecar
+          - /target
+        resources:
+          limits:
+            cpu: 128m
+            memory: '64Mi'
         requests:
           cpu: 64m
           memory: '64Mi'
-      volumeMounts:
-        - name: sidecar
-          mountPath: /target
-        - name: default-token-rdgnv
-          readOnly: true
-          mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+        volumeMounts:
+          - name: sidecar
+            mountPath: /target
+          - name: default-token-rdgnv
+            readOnly: true
+            mountPath: /var/run/secrets/kubernetes.io/serviceaccount
       containers:
       - name: {{ instance_name }}-spring-boot
         image: {{ spring-boot.image }}
