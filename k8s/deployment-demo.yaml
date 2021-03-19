@@ -38,9 +38,9 @@ spec:
           limits:
             cpu: 128m
             memory: '64Mi'
-        requests:
-          cpu: 64m
-          memory: '64Mi'
+          requests:
+            cpu: 64m
+            memory: '64Mi'
         volumeMounts:
           - name: sidecar
             mountPath: /target
