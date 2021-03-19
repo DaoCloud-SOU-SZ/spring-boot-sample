@@ -21,7 +21,7 @@ spec:
     spec:
       volumes:
       - name: sidecar
-      emptyDir: {}
+        emptyDir: {}
       - name: default-token-rdgnv
         secret:
           secretName: default-token-rdgnv
