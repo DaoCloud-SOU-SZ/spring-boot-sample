@@ -89,7 +89,7 @@ spec:
               path: /actuator/health
               port: 9090
               scheme: HTTP
-            initialDelaySeconds: 15
+            initialDelaySeconds: 30
             timeoutSeconds: 1
             periodSeconds: 3
             successThreshold: 1
@@ -101,12 +101,12 @@ spec:
               scheme: HTTP
             initialDelaySeconds: 20
             timeoutSeconds: 1
-            periodSeconds: 2
+            periodSeconds: 3
             successThreshold: 1
             failureThreshold: 3
         resources:
           limits:
-            cpu: "3" # cpu 限制
+            cpu: "6" # cpu 限制
             memory: "2048Mi" # 内存限制
           requests:
             cpu: "0.5" # cpu 预留（与限制值一致）
