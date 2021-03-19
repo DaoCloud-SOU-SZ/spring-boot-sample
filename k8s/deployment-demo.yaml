@@ -20,14 +20,14 @@ spec:
         dce.daocloud.io/metrics-protocal: http
     spec:
       volumes:
-    - name: sidecar
+      - name: sidecar
       emptyDir: {}
-    - name: default-token-rdgnv
-      secret:
-        secretName: default-token-rdgnv
-        defaultMode: 420
-  initContainers:
-    - name: dx-monitor-agent-sidecar
+      - name: default-token-rdgnv
+        secret:
+          secretName: default-token-rdgnv
+          defaultMode: 420
+      initContainers:
+      - name: dx-monitor-agent-sidecar
       image: '192.168.150.181/dmp-system/dx-monitor-agent-sidecar:2.4.0'
       command:
         - cp
