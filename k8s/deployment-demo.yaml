@@ -50,6 +50,7 @@ spec:
       containers:
       - name: {{ instance_name }}-spring-boot
         image: {{ spring-boot.image }}
+        imagePullPolicy: Always
         ports:
         - containerPort: 9090 #容器端口
         - containerPort: 8080 #容器端口
