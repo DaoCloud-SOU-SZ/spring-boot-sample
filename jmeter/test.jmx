@@ -31,10 +31,11 @@
             <collectionProp name="Arguments.arguments"/>
           </elementProp>
           <stringProp name="HTTPSampler.domain">192.168.150.182</stringProp>
-          <stringProp name="HTTPSampler.port">31694</stringProp>
+          <stringProp name="HTTPSampler.port">38893</stringProp>
           <stringProp name="HTTPSampler.protocol">http</stringProp>
           <stringProp name="HTTPSampler.contentEncoding"></stringProp>
-          <stringProp name="HTTPSampler.path">/actuator/conditions</stringProp>
+          <!--<stringProp name="HTTPSampler.path">/actuator/conditions</stringProp>-->
+          <stringProp name="HTTPSampler.path">/demo/version</stringProp>
           <stringProp name="HTTPSampler.method">GET</stringProp>
           <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
           <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
