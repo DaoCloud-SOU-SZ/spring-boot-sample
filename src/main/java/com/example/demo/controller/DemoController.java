@@ -11,7 +11,7 @@ public class DemoController {
 	@ResponseBody
 	@RequestMapping(value = "/version", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
 	public String version() {
-		return "{\"version\":\"55.0.0\",\"message\":\"hello \"}";
+		return "{\"version\":\"1.0.0\",\"message\":\"hello \"}";
 	}
 
 }
