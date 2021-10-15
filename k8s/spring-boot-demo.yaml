@@ -48,7 +48,7 @@ spec:
             readOnly: true
             mountPath: /var/run/secrets/kubernetes.io/serviceaccount
       containers:
-      - name: {{ instance_name }}-spring-boot
+      - name: {{ instance_name }}
         image: {{ spring-boot-demo.image }}
         imagePullPolicy: Always
         ports:
