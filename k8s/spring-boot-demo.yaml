@@ -123,12 +123,15 @@ metadata:
 spec:
   type: NodePort
   ports:
-  - port: 9090
-  #- name: zxport1
-  #  protocol: TCP
-  #  port: 49090 # 服务端口
-  #- name: zxport2
-  #  protocol: TCP
-  #  port: 48080 # 服务端口
+  #- port: 9090
+  #- port: 8080
+  - name: zxport1
+    protocol: TCP
+    port: 49090 # 服务端口
+    targetPort: 49090
+  - name: zxport2
+    protocol: TCP
+    port: 48080 # 服务端口
+    targetPort: 48080
   selector:
     app: {{ instance_name }}-spring-boot
