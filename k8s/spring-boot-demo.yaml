@@ -125,13 +125,13 @@ spec:
   ports:
   #- port: 9090
   #- port: 8080
-  - name: zxport1
+  - name: prometheus
     protocol: TCP
-    port: 49090 # 服务端口
-    targetPort: 49090
-  - name: zxport2
+    port: 9090 # 服务端口
+    targetPort: 9090
+  - name: http
     protocol: TCP
-    port: 48080 # 服务端口
-    targetPort: 48080
+    port: 8080 # 服务端口
+    targetPort: 8080
   selector:
     app: {{ instance_name }}-spring-boot
