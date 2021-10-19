@@ -123,15 +123,15 @@ metadata:
 spec:
   type: NodePort
   ports:
-  - port: 9090
-  - port: 8080
-  #- name: prometheus
-  #  protocol: TCP
-  #  port: 9090 # 服务端口
-  #  targetPort: 9090
-  #- name: http
-  #  protocol: TCP
-  #  port: 8080 # 服务端口
-  #  targetPort: 8080
+  #- port: 9090
+  #- port: 8080
+  - name: zx1
+    protocol: TCP
+    port: 9090 # 服务端口
+    targetPort: 9090
+  - name: zx2
+    protocol: TCP
+    port: 8080 # 服务端口
+    targetPort: 8080
   selector:
     app: {{ instance_name }}-spring-boot
