@@ -53,7 +53,7 @@ spec:
         imagePullPolicy: Always
         ports:
         - containerPort: 9090 #容器端口
-        - containerPort: 8080 #容器端口
+        #- containerPort: 8080 #容器端口
         envFrom:
         - configMapRef:
             name: dmp-config
@@ -123,11 +123,12 @@ metadata:
 spec:
   type: NodePort
   ports:
-  - name: zxport1
-    protocol: TCP
-    port: 49090 # 服务端口
-  - name: zxport2
-    protocol: TCP
-    port: 48080 # 服务端口
+  - port: 9090
+  #- name: zxport1
+  #  protocol: TCP
+  #  port: 49090 # 服务端口
+  #- name: zxport2
+  #  protocol: TCP
+  #  port: 48080 # 服务端口
   selector:
     app: {{ instance_name }}-spring-boot
