@@ -41,12 +41,12 @@ spec:
           requests:
             cpu: 64m
             memory: '64Mi'
-        volumeMounts:
-          - name: sidecar
-            mountPath: /target
-          - name: default-token-rdgnv
-            readOnly: true
-            mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+        #volumeMounts:
+        #  - name: sidecar
+        #    mountPath: /target
+        #  - name: default-token-rdgnv
+        #    readOnly: true
+        #    mountPath: /var/run/secrets/kubernetes.io/serviceaccount
       containers:
       - name: {{ instance_name }}
         image: {{ spring-boot-demo.image }}
