@@ -22,11 +22,11 @@ spec:
         - containerPort: 9090 # 容器端口
         resources:
           limits:
-            cpu: "2" # cpu 限制
+            cpu: "6" # cpu 限制
             memory: "2048Mi" # 内存限制
           requests:
-            cpu: "2" # cpu 预留（与限制值一致）
-            memory: "2048Mi" # 内存预留（与限制值一致）
+            cpu: "0.5" # cpu 预留（与限制值一致）
+            memory: "512Mi" # 内存预留（与限制值一致）
 ---
 apiVersion: v1
 kind: Service
