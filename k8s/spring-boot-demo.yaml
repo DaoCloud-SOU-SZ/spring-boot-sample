@@ -125,11 +125,11 @@ spec:
   ports:
   #- port: 9090
   #- port: 8080
-  - name: zx1
+  - name: zx3
     protocol: TCP
     port: 9090 # 服务端口
     targetPort: 9090
-  - name: zx2
+  - name: zx4
     protocol: TCP
     port: 8080 # 服务端口
     targetPort: 8080
