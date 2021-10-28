@@ -1,0 +1,137 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ instance_name }}-spring-boot
+  labels:
+    app: {{ instance_name }}-spring-boot
+spec:
+  selector:
+    matchLabels:
+      app: {{ instance_name }}-spring-boot
+  template:
+    metadata:
+      name: {{ instance_name }}-spring-boot
+      labels:
+        app: {{ instance_name }}-spring-boot
+      annotations:
+        dce.daocloud.io/metrics-enabled: 'true'
+        dce.daocloud.io/metrics-path: /actuator/prometheus
+        dce.daocloud.io/metrics-port: '9090'
+        dce.daocloud.io/metrics-protocal: http
+    spec:
+      volumes:
+      - name: sidecar
+        emptyDir: {}
+    #  - name: default-token-rdgnv
+    #    secret:
+    #      secretName: default-token-rdgnv
+    #      defaultMode: 420
+      initContainers:
+      - name: dx-monitor-agent-sidecar
+        image: '192.168.150.181/dmp-system/dx-monitor-agent-sidecar:2.4.0'
+        command:
+          - cp
+          - '-r'
+          - /sidecar
+          - /target
+        resources:
+          limits:
+            cpu: 128m
+            memory: '64Mi'
+          requests:
+            cpu: 64m
+            memory: '64Mi'
+        volumeMounts:
+          - name: sidecar
+            mountPath: /target
+        #  - name: default-token-rdgnv
+        #    readOnly: true
+        #    mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+      containers:
+      - name: {{ instance_name }}
+        image: {{ fund-deploy-spring-boot.image }}
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 9090 #容器端口
+        - containerPort: 8080 #容器端口
+        #envFrom:
+        #- configMapRef:
+        #    name: dmp-config
+        env:
+        - name: AGENT_NAME
+          valueFrom:
+            fieldRef:
+              apiVersion: v1
+              fieldPath: 'metadata.labels[''dx.daocloud.io/service-name'']'
+        - name: DX_SERVICE_NAME
+          valueFrom:
+            fieldRef:
+              apiVersion: v1
+              fieldPath: 'metadata.labels[''dce.daocloud.io/app'']'
+        - name: DX_APP_NAME
+          valueFrom:
+            fieldRef:
+              apiVersion: v1
+              fieldPath: 'metadata.labels[''dce.daocloud.io/app'']'
+        - name: AGENT_INSTANCE_UUID
+          valueFrom:
+            fieldRef:
+              apiVersion: v1
+              fieldPath: metadata.name
+        - name: AGENT_INSTANCE_ID
+          valueFrom:
+            fieldRef:
+              apiVersion: v1
+              fieldPath: metadata.name
+        - name: JAVA_OPTS
+          value: '-javaagent:/sidecar/sidecar/skywalking/agent/skywalking-agent.jar'
+        livenessProbe:
+            httpGet:
+              path: /actuator/health
+              port: 9090
+              scheme: HTTP
+            initialDelaySeconds: 50
+            timeoutSeconds: 1
+            periodSeconds: 5
+            successThreshold: 1
+            failureThreshold: 3
+        readinessProbe:
+            httpGet:
+              path: /actuator/health
+              port: 9090
+              scheme: HTTP
+            initialDelaySeconds: 25
+            timeoutSeconds: 1
+            periodSeconds: 3
+            successThreshold: 1
+            failureThreshold: 3
+        resources:
+          limits:
+            cpu: "1" # cpu 限制
+            memory: "1024Mi" # 内存限制
+          requests:
+            cpu: "1" # cpu 预留（与限制值一致）
+            memory: "1024Mi" # 内存预留（与限制值一致）
+        volumeMounts:
+          - name: sidecar
+            mountPath: /sidecar
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ instance_name }}-spring-boot
+spec:
+  type: NodePort
+  ports:
+  #- port: 9090
+  #- port: 8080
+  - name: zx3
+    protocol: TCP
+    port: 9090 # 服务端口
+    targetPort: 9090
+  - name: zx4
+    protocol: TCP
+    port: 8080 # 服务端口
+    targetPort: 8080
+  selector:
+    app: {{ instance_name }}-spring-boot
