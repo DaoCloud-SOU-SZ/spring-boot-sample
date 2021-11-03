@@ -32,7 +32,7 @@ spec:
         command:
             - /bin/bash
             - '-c'
-            - >
+            - |
               set -v
               cp /sidecar/skywalking/agent/optional-plugins/apm-trace-ignore-plugin-6.6.0-SNAPSHOT.jar /sidecar/skywalking/agent/plugins/
               echo 'trace.ignore_path=${TRACE_IGNORE_PATH:/actuator/**,/eureka/**}' >> /sidecar/skywalking/agent/config/apm-trace-ignore-plugin.config
