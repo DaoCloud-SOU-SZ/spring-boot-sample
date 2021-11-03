@@ -49,7 +49,7 @@ spec:
         #    mountPath: /var/run/secrets/kubernetes.io/serviceaccount
       containers:
       - name: {{ instance_name }}
-        image: {{ fund2.image }}
+        image: {{ demo-spring-boot }}
         imagePullPolicy: Always
         ports:
         - containerPort: 9090 #容器端口
