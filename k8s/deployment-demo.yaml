@@ -30,10 +30,13 @@ spec:
       - name: dx-monitor-agent-sidecar
         image: '192.168.150.181/dmp-system/dx-monitor-agent-sidecar:2.4.0'
         command:
-          - cp
-          - '-r'
-          - /sidecar
-          - /target
+            - /bin/bash
+            - '-c'
+            - >
+              set -v
+              cp /sidecar/skywalking/agent/optional-plugins/apm-trace-ignore-plugin-6.6.0-SNAPSHOT.jar /sidecar/skywalking/agent/plugins/
+              echo 'trace.ignore_path=${TRACE_IGNORE_PATH:/actuator/**,/eureka/**}' >> /sidecar/skywalking/agent/config/apm-trace-ignore-plugin.config
+              cp -r /sidecar /target
         resources:
           limits:
             cpu: 128m
