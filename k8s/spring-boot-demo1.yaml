@@ -120,7 +120,8 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: {{ instance_name }}-spring-boot
+  name: test-demo-spring-boot
+#  name: {{ instance_name }}-spring-boot
 spec:
   type: NodePort
   ports:
