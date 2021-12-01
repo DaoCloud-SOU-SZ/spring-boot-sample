@@ -108,12 +108,16 @@ spec:
             periodSeconds: 3
             successThreshold: 1
             failureThreshold: 3
+        lifecycle:
+          preStop:
+            exec:
+              command: ["/bin/bash","-c","sleep 20"]
         resources:
           limits:
-            cpu: "6" # cpu 限制
+            cpu: "2" # cpu 限制
             memory: "2048Mi" # 内存限制
           requests:
-            cpu: "0.5" # cpu 预留（与限制值一致）
+            cpu: "2" # cpu 预留（与限制值一致）
             memory: "512Mi" # 内存预留（与限制值一致）
         volumeMounts:
           - name: sidecar
