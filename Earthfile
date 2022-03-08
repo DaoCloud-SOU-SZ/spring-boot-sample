@@ -4,6 +4,7 @@ all:
 docker:
     FROM 192.168.50.19/library/openjdk:8u322-ol7-ef
 
-    COPY target/spring-boot-demo*.jar spring-boot-demo.jar
+    ENV DIST_NAME=spring-boot-demo
+    COPY target/$DIST_NAME*.jar $DIST_NAME.jar
 
     SAVE IMAGE --push --insecure 192.168.50.19/demo/spring-boot-demo:0.0.1-SNAPSHOT
