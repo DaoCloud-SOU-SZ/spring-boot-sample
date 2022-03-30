@@ -13,5 +13,17 @@ public class DemoController {
 	public String version() {
 		return "{\"version\":\"13.0.0\",\"message\":\"hello world\"}";
 	}
+	
+	static int var = 0;
+    @GetMapping("/getVersion")
+    public String getVersion() throws InterruptedException {
+        var ++;
+        if(var % 2 == 0){
+            throw new NullPointerException("-----------");
+        }else {
+            Thread.sleep(2000);
+            return "V1.0.0";
+        }
+    }
 
 }
