@@ -27,7 +27,7 @@ spec:
               topologyKey: kubernetes.io/hostname
       containers:
       - name: {{ instance_name }}-demo
-        image: {{ spring-boot-demo-docker.image }}
+        image: {{ demo-dev.image }}
         ports:
         - name: http
           containerPort: 8080
